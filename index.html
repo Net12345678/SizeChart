@@ -46,6 +46,14 @@
         // 以二進位制方式開啟檔案
         fileReader.readAsBinaryString(files[0]);
       });
+
+      function conversionToCm (num) {
+        let converNum = num * 2.54;
+        converNum = converNum.toFixed(1)
+        // 處理完的值 ex: 8.4
+        // 分別把小數點和整數部分分開，對小數點做判斷，最後再加總
+        console.log(converNum);
+      } 
     </script>
   </body>
 
