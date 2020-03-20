@@ -4,8 +4,8 @@
   <head>
     <meta charset="UTF-8">
     <title>Excel批量處理</title>    
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="css/all.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
   </head>
@@ -13,19 +13,79 @@
   <body>
 
     <div id="app">
-      <div class="container-fluid">       
+      <div class="container-fluid">  
+        <h1 class="text-center p-5 alert alert-dark">尺寸表匯入</h1>     
         <!-- <input class="d-block alert-primary excel-file" type="file" id="">    -->
-        <div class="row">
-          <div class="col-2">
+        <div class="row justify-content-center no-gutters">
+          <div class="border d-flex align-items-center">
             <div class="custom-file">
               <input type="file" class="custom-file-input excel-file" id="customFile" @change="inputFile">
               <label class="custom-file-label" for="customFile">Choose file</label>
             </div>  
           </div>
-          <div class="col">
-            
+          <!--對照表格_暫不開啟-->
+          <!-- <div class="col-8">
+            <table border="1" width="60%" cellspacing="0" cellpadding="0" align="center">
+              <tbody>
+              <tr bgcolor="#999999">
+                <td class="b" align="center" v-for="titleCol in allData[0]">                  
+                  <span style="color: #ffffff;">{{titleCol}}</span></span>
+                </td>
+              </tr>
+              <tr v-for="(tableRow, index) in allData" v-if="index > 0">
+                <td class="b" align="center" v-for="tableCol in tableRow">
+                  <span style="color: #808080; font-size: xx-small;">
+                    <span style="color: #808080;">{{tableCol}}</span>
+                  </span>
+                </td>   
+              </tr>              
+              </tbody>
+              </table>
+          </div> -->
+        </div>
+        <hr>       
+        <div class="container pre-table-font" id="preview">
+          <table border="1" width="94%" cellspacing="0" cellpadding="0" align="center">
+            <tbody>
+            <tr bgcolor="#999999">
+            <td class="b" align="center" v-for="titleCol in allData[0]">
+              <span style="color: #ffffff; font-size: xx-small;">
+                <span style="color: #ffffff;">{{titleCol}}</span>
+              </span>
+            </td>            
+            </tr>
+            <tr v-for="(tableRow, index) in allData" v-if="index > 0">
+            <td class="b" align="center"  v-for="tableCol in tableRow">
+              <span style="color: #808080; font-size: xx-small;">
+                <span style="color: #808080;">{{tableCol}}</span>
+              </span>
+            </td>            
+            </tr>
+            </tbody>
+            </table>
+        </div>
+        <button type="button" class="btn btn-success mt-5 mx-auto d-block" data-target="#createEDMCode" data-toggle="modal" type="button" @click="outputEDMHtml">Success</button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="createEDMCode" role="dialog" aria-hidden="true" aria-labelledby="createEDMCodeTitle" tabindex="-1">
+          <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3 class="modal-title h3" id="createEDMCodeTitle">EDM HTML 程式碼</h3>
+                <button class="close" data-dismiss="modal" type="button" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                {{oupputData}}
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-success" data-dismiss="modal" type="button">Close</button>
+              </div>
+            </div>
           </div>
-        </div>       
+        </div>
+
       </div>
     </div>
     

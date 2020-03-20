@@ -1,6 +1,15 @@
 var app = new Vue({
     el:'#app',
-    data: {},
+    data: {
+        allData:[
+            ["尺寸","28","29","30","31","32","33","34","35","36","38","40"],
+            ["腰圍",38,39.5,40.5,42,43,44.5,45.5,47,48,51,53.5],
+            ["臀圍",47.5,48.5,50,51,52.5,53.5,55,56,57.5,60,62.5],
+            ["腿圍",28.5,29,30,30.5,31,31.5,32.5,33,33.5,35,36]
+        ],
+        oupputData: ''
+    },    
+    
     methods:{
        inputFile(e){
             //給input標籤繫結change事件，一上傳選中的.xls檔案就會觸發該函式
@@ -36,6 +45,10 @@ var app = new Vue({
             };
             // 以二進位制方式開啟檔案
             fileReader.readAsBinaryString(files[0]);
-        }
+        },
+        outputEDMHtml() {
+			const preview = document.getElementById('preview');
+			this.oupputData = preview.firstChild.outerHTML;
+		}
     } 
 });
