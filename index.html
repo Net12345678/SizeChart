@@ -3,50 +3,39 @@
 
   <head>
     <meta charset="UTF-8">
-    <title>Excel批量處理</title>
+    <title>Excel批量處理</title>    
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
   </head>
 
   <body>
-    <input type="file" id="excel-file">
-    <script>
-      //給input標籤繫結change事件，一上傳選中的.xls檔案就會觸發該函式
-      $('#excel-file').change(function (e) {
-        var files = e.target.files;
-        var fileReader = new FileReader();
-        fileReader.onload = function (ev) {
-          try {
-            var data = ev.target.result
-            var workbook = XLSX.read(data, {
-              type: 'binary'
-            }) // 以二進位制流方式讀取得到整份excel表格物件
-            var persons = []; // 儲存獲取到的資料
-          } catch (e) {
-            console.log('檔案型別不正確');
-            return;
-          }
-          // 表格的表格範圍，可用於判斷表頭是否數量是否正確
-          var fromTo = '';
-          // 遍歷每張表讀取
-          for (var sheet in workbook.Sheets) {
-            if (workbook.Sheets.hasOwnProperty(sheet)) {
-              fromTo = workbook.Sheets[sheet]['!ref'];
-              console.log(fromTo);
-              persons = persons.concat(XLSX.utils.sheet_to_json(workbook.Sheets[sheet]));
-              break; // 如果只取第一張表，就取消註釋這行
-            }
-          }
-          //在控制檯打印出來表格中的資料
-          const idList = Object.keys(persons[0]);
-          console.log(idList);
-          console.log(persons);
 
-        };
-        // 以二進位制方式開啟檔案
-        fileReader.readAsBinaryString(files[0]);
-      });
-    </script>
+    <div id="app">
+      <div class="container-fluid">       
+        <!-- <input class="d-block alert-primary excel-file" type="file" id="">    -->
+        <div class="row">
+          <div class="col-2">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input excel-file" id="customFile" @change="inputFile">
+              <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>  
+          </div>
+          <div class="col">
+            
+          </div>
+        </div>       
+      </div>
+    </div>
+    
+
+    
+    
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/all.js"></script>
   </body>
 
 </html>
