@@ -8,7 +8,7 @@ var app = new Vue({
         tableData: [],
     },
     methods: {
-        inputFile(e) {
+        inputFile(e){
             //給input標籤繫結change事件，一上傳選中的.xls檔案就會觸發該函式
 
             var vm = this;
@@ -44,7 +44,15 @@ var app = new Vue({
                 vm.attrs = Object.keys(persons[0]);
                 vm.sizeData = persons;
             };
+          // 以二進位制方式開啟檔案
+            fileReader.readAsBinaryString(files[0]);
+    
+        
         },
+      outputEDMHtml() {
+			const preview = document.getElementById('preview');
+			this.oupputData = preview.firstChild.outerHTML;
+		},
         // 吋轉公分，進位(可以分出來當一個 function)
         conversionToCm(inches) {
             const vm = this;
@@ -92,6 +100,7 @@ var app = new Vue({
                     vm.sizeData[i][vm.attrs[j]] = vm.conversionToCm(vm.sizeData[i][vm.attrs[j]]);
                 }
             };
+
         },
         createTable() {
             const vm = this;
@@ -105,6 +114,3 @@ var app = new Vue({
 
     },
 });
-
-
-
