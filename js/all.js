@@ -2,11 +2,15 @@ var app = new Vue({
     el: '#app',
     data: {
         attrs: [],
-        sizeTableData: [],
+        sizeData: [],
+        rowNum: 0,
+        colNum: 0,
+        tableData: [],
     },
     methods: {
         inputFile(e) {
             //給input標籤繫結change事件，一上傳選中的.xls檔案就會觸發該函式
+            var vm = this;
             var files = e.target.files;
             var fileReader = new FileReader();
             fileReader.readAsBinaryString(files[0]);
@@ -33,15 +37,15 @@ var app = new Vue({
                     }
                 }
                 //在控制檯打印出來表格中的資料
-                this.attrs = Object.keys(persons[0]);
-                this.sizeTableData = persons;
-                console.log(this.attrs, this.sizeTableData);
+                vm.attrs = Object.keys(persons[0]);
+                vm.sizeData = persons;
             };
         },
         // 吋轉公分，進位(可以分出來當一個 function)
         conversionToCm(inches) {
+            const vm = this;
             const toCm = (inches * 2.54).toFixed(1);
-            const separate = separationNum(toCm);
+            const separate = vm.separationNum(toCm);
 
             // 分出來當一個 function
             if (separate[1] < 0.3) {
@@ -55,50 +59,29 @@ var app = new Vue({
             const totalNum = separate.reduce(function (prev, element) {
                 return prev + element;
             }, 0);
-
             return totalNum;
+            
         },
 
         // 分離整數和小數點
         separationNum(num) {
+            
             const integer = Math.floor(num);
             const decimalPoint = ((num * 10) - (integer * 10)) / 10;
-
             return [integer, decimalPoint];
+
         },
 
-        // 輸出處理好的 table 資料
-        toCmTable(attrAry, valueAry) {
-            const value = valueAry;
-            const attr = attrAry;
-            const row = value.length;
-            const col = attr
-
-            const allData = [];
-            const line = [];
-
-
-            // allData: [
-            //   ["尺寸", "XS", "S", "M"],
-            //   ["肩寬", 1, 2, 3],
-            //   ["胸寬", 4, 5, 6]
-            // ],
-
-            // 跑雙迴圈不優，想一下怎改效能較好
-            // for (let i = 0; i < value.length; i++) {
-            //   for (let j = 1; j < attr.length; j++) {
-            //     cmTable.push(conversionToCm(value[i][attr[j]]));
-            //   }
-
-            // }
-            // for (let i = 0; i < value.length; i++) {
-            //   sizeTable.push((value[i][attr[0]]));
-            // }
-
-            // // console.log(cmTable); 
-            // // console.log(sizeTable);
+       
+        
+    },
+    computed: {
+        getLen() {
+            const vm = this;
+            vm.rowNum = vm.attrs.length;
+            vm.colNum = vm.sizeData.length;
         },
-    }
+    },
 });
 
 
