@@ -10,7 +10,11 @@ var app = new Vue({
     methods: {
         inputFile(e) {
             //給input標籤繫結change事件，一上傳選中的.xls檔案就會觸發該函式
+
             var vm = this;
+            vm.attrs = [];
+            vm.sizeData = [];
+            vm.tableData = [];
             var files = e.target.files;
             var fileReader = new FileReader();
             fileReader.readAsBinaryString(files[0]);
@@ -65,7 +69,7 @@ var app = new Vue({
 
         // 分離整數和小數點
         separationNum(num) {
-            
+
             const integer = Math.floor(num);
             const decimalPoint = ((num * 10) - (integer * 10)) / 10;
             return [integer, decimalPoint];
@@ -81,6 +85,24 @@ var app = new Vue({
             vm.rowNum = vm.attrs.length;
             vm.colNum = vm.sizeData.length;
         },
+        toCm() {
+            const vm = this;
+            for (let i = 0; i < vm.colNum; i++) {
+                for (let j = 1; j < vm.rowNum; j++) {
+                    vm.sizeData[i][vm.attrs[j]] = vm.conversionToCm(vm.sizeData[i][vm.attrs[j]]);
+                }
+            };
+        },
+        createTable() {
+            const vm = this;
+            for (let i = 0; i < vm.rowNum; i++) {
+                vm.tableData.push([vm.attrs[i]]);
+                for (let j = 0; j < vm.colNum; j++) {
+                    vm.tableData[i].push(vm.sizeData[j][vm.attrs[i]]);
+                }
+            } 
+        }
+
     },
 });
 
