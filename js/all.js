@@ -6,6 +6,8 @@ var app = new Vue({
         rowNum: 0,
         colNum: 0,
         tableData: [],
+        allData: [],
+        oupputData: [],
     },
     methods: {
         inputFile(e){
@@ -17,7 +19,6 @@ var app = new Vue({
             vm.tableData = [];
             var files = e.target.files;
             var fileReader = new FileReader();
-            fileReader.readAsBinaryString(files[0]);
             fileReader.onload = function (ev) {
                 try {
                     var data = ev.target.result
