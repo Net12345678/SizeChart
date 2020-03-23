@@ -49,7 +49,7 @@
           <table border="1" width="94%" cellspacing="0" cellpadding="0" align="center">
             <tbody>
               <tr bgcolor="#999999">
-                <td class="b" align="center" v-for="titleCol in allData[0]">
+                <td class="b" align="center" v-for="(titleCol, num) in allData[0]" :style="{width: num==0?'10%':tdWidth+'%'}">
                   <span style="color: #ffffff; font-size: xx-small;">
                     <span style="color: #ffffff;">{{titleCol}}</span>
                   </span>
@@ -88,13 +88,8 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
-
-
-
-
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
