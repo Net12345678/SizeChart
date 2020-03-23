@@ -3,9 +3,10 @@
 
   <head>
     <meta charset="UTF-8">
-    <title>Excel批量處理</title>    
+    <title>Excel批量處理</title>
     <link rel="stylesheet" href="css/all.min.css">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
   </head>
@@ -13,15 +14,15 @@
   <body>
 
     <div id="app">
-      <div class="container-fluid">  
-        <h1 class="text-center p-5 alert alert-dark">尺寸表匯入</h1>     
+      <div class="container-fluid">
+        <h1 class="text-center p-5 alert alert-dark">尺寸表匯入</h1>
         <!-- <input class="d-block alert-primary excel-file" type="file" id="">    -->
         <div class="row justify-content-center no-gutters">
           <div class="border d-flex align-items-center">
             <div class="custom-file">
               <input type="file" class="custom-file-input excel-file" id="customFile" @change="inputFile">
               <label class="custom-file-label" for="customFile">Choose file</label>
-            </div>  
+            </div>
           </div>
           <!--對照表格_暫不開啟-->
           <!-- <div class="col-8">
@@ -43,31 +44,33 @@
               </table>
           </div> -->
         </div>
-        <hr>       
+        <hr>
         <div class="container pre-table-font" id="preview">
           <table border="1" width="94%" cellspacing="0" cellpadding="0" align="center">
             <tbody>
-            <tr bgcolor="#999999">
-            <td class="b" align="center" v-for="titleCol in allData[0]">
-              <span style="color: #ffffff; font-size: xx-small;">
-                <span style="color: #ffffff;">{{titleCol}}</span>
-              </span>
-            </td>            
-            </tr>
-            <tr v-for="(tableRow, index) in allData" v-if="index > 0">
-            <td class="b" align="center"  v-for="tableCol in tableRow">
-              <span style="color: #808080; font-size: xx-small;">
-                <span style="color: #808080;">{{tableCol}}</span>
-              </span>
-            </td>            
-            </tr>
+              <tr bgcolor="#999999">
+                <td class="b" align="center" v-for="titleCol in allData[0]">
+                  <span style="color: #ffffff; font-size: xx-small;">
+                    <span style="color: #ffffff;">{{titleCol}}</span>
+                  </span>
+                </td>
+              </tr>
+              <tr v-for="(tableRow, index) in allData" v-if="index > 0">
+                <td class="b" align="center" v-for="tableCol in tableRow">
+                  <span style="color: #808080; font-size: xx-small;">
+                    <span style="color: #808080;">{{tableCol}}</span>
+                  </span>
+                </td>
+              </tr>
             </tbody>
-            </table>
+          </table>
         </div>
-        <button type="button" class="btn btn-success mt-5 mx-auto d-block" data-target="#createEDMCode" data-toggle="modal" type="button" @click="outputEDMHtml">製作程式</button>
+        <button type="button" class="btn btn-success mt-5 mx-auto d-block" data-target="#createEDMCode"
+          data-toggle="modal" type="button" @click="outputEDMHtml">製作程式</button>
 
         <!-- Modal -->
-        <div class="modal fade" id="createEDMCode" role="dialog" aria-hidden="true" aria-labelledby="createEDMCodeTitle" tabindex="-1">
+        <div class="modal fade" id="createEDMCode" role="dialog" aria-hidden="true" aria-labelledby="createEDMCodeTitle"
+          tabindex="-1">
           <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -88,12 +91,14 @@
 
       </div>
     </div>
-    
 
-    
-    
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="js/all.js"></script>
   </body>
