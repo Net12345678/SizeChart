@@ -51,7 +51,6 @@ var app = new Vue({
 		outputEDMHtml() {
 			const preview = document.getElementById('preview');
 			this.oupputData = preview.firstChild.outerHTML;
-			console.log(this.oupputData);
 		},
 
 		// 吋轉公分，進位(可以分出來當一個 function)
