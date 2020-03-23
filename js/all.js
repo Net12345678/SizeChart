@@ -7,7 +7,7 @@ var app = new Vue({
 		colNum: 0,
 		allData: [],
 		oupputData: [],
-		tdWidth: 0,
+        tdWidth: 0
 	},
 	methods: {
 		inputFile(e) {
