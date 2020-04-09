@@ -6,7 +6,7 @@ var app = new Vue({
 		rowNum: 0,
 		colNum: 0,
 		allData: [],
-		oupputData: [],
+		oupputData: '',
         tdWidth: 0
 	},
 	methods: {
@@ -50,7 +50,12 @@ var app = new Vue({
 
 		outputEDMHtml() {
 			const preview = document.getElementById('preview');
-			this.oupputData = preview.firstChild.outerHTML;
+			this.oupputData = '';
+			preview.childNodes.forEach((item) => {
+				if(item.nodeType !== 3){
+					this.oupputData += item.outerHTML;
+				}
+			})
 		},
 
 		// 吋轉公分，進位(可以分出來當一個 function)
