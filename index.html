@@ -46,7 +46,15 @@
         </div>
         <hr>
         <div class="container pre-table-font" id="preview">
-          <table border="1" width="94%" cellspacing="0" cellpadding="0" align="center">
+          <p align="left" v-if="allData[0]">
+            <span style="font-size: 8pt;">
+              <span style="color: #808080;">
+                <span class="text30">●</span>
+                商品尺寸 (單位:cm)
+              </span>
+            </span>
+          </p>
+          <table v-if="allData[0]" border="1" width="94%" cellspacing="0" cellpadding="0" align="center">
             <tbody>
               <tr bgcolor="#999999">
                 <td class="b" align="center" v-for="(titleCol, num) in allData[0]" :style="{width: num==0?'10%':tdWidth+'%'}">
